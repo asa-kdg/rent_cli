@@ -6,14 +6,12 @@ import java.util.List;
 
 public class Shop {
 	private String name;
-	private int stock;
 	private LocalTime openTime;
 	private LocalTime closeTime;
 	private List<Car> cars;
 
-	public Shop(String name, int stock, LocalTime openTime, LocalTime closeTime) {
+	public Shop(String name, LocalTime openTime, LocalTime closeTime) {
 		this.name = name;
-		this.stock = stock;
 		this.openTime = openTime;
 		this.closeTime = closeTime;
 		this.cars = new ArrayList<>();
@@ -27,14 +25,6 @@ public class Shop {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
 	}
 
 	public LocalTime getOpenTime() {
