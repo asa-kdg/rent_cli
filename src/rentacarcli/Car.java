@@ -1,17 +1,22 @@
 package rentacarcli;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car {
 	private String name;
 	private int car_number;
 	private int price;
 	private String catergory;
+	private List<Reservation> reserve;
 
 	public Car(String name, int car_number, int price, String catergory) {
-		super();
 		this.name = name;
 		this.car_number = car_number;
 		this.price = price;
 		this.catergory = catergory;
+		this.reserve = new ArrayList<>();
+
 	}
 
 	public String getName() {

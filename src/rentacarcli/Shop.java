@@ -50,7 +50,6 @@ public class Shop {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-	///
 
 	///車を追加
 	public void addCar(Car car) {
