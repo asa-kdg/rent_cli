@@ -5,17 +5,17 @@ import java.time.LocalTime;
 
 public class Reservation {
 	private int reserveId;
-	private String name;
+	private String user;
 	private int car_number;
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
 	private LocalTime rentaLocalTime;
 
-	public Reservation(int reserveId, String name, int car_number, LocalDateTime startTime, LocalDateTime finishTime,
+	public Reservation(int reserveId, String user, int car_number, LocalDateTime startTime, LocalDateTime finishTime,
 			LocalTime rentaLocalTime) {
 
 		this.reserveId = reserveId;
-		this.name = name;
+		this.user = user;
 		this.car_number = car_number;
 		this.startTime = startTime;
 		this.finishTime = finishTime;
@@ -30,12 +30,12 @@ public class Reservation {
 		this.reserveId = reserveId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public int getCar_number() {
