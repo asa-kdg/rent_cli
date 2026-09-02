@@ -1,4 +1,6 @@
-package rentacarcli;
+package carmodel;
+
+import model.Shop;
 
 public class CreateCarList {
 	public static void registerKinshiCars(Shop shop) {
