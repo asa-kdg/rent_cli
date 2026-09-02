@@ -1,8 +1,10 @@
-package rentacarcli;
+package model;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import carmodel.Car;
 
 public class Shop {
 	private String name;

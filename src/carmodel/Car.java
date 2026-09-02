@@ -1,7 +1,9 @@
-package rentacarcli;
+package carmodel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import reserve.Reservation;
 
 public class Car {
 	private String name;

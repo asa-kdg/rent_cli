@@ -1,4 +1,4 @@
-package rentacarcli;
+package carmodel;
 
 public class Pb extends Car {
 	private int passengers;
