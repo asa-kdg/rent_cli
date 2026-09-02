@@ -22,7 +22,7 @@ public class AdminMethod {
 		}
 	}
 
-	public boolean certificationPass() {
+	public static boolean certificationPass() {
 		System.out.println("パスワードを入力してください");
 		String pw = scan.next();
 		if (pw == Admin.getPass()) {
