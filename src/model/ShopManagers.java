@@ -3,8 +3,10 @@ package model;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ShopManagers {
+	static Scanner scan = new Scanner(System.in);
 
 	private static List<Shop> shops;
 
@@ -45,5 +47,25 @@ public class ShopManagers {
 		}
 
 		return null;
+	}
+
+	public void addShop() {
+
+		System.out.println("店舗名を入力してください");
+		String storeName = scan.next();
+		System.out.println("開店時間の時を入力してください");
+		int openTime = scan.nextInt();
+		System.out.println("開店時間の時を入力してください");
+		int openMin = scan.nextInt();
+		System.out.println("閉店時間の時を入力してください");
+		int closeTime = scan.nextInt();
+		System.out.println("閉店時間の時を入力してください");
+		int closeMin = scan.nextInt();
+
+		shops.add(new Shop(
+				storeName,
+				LocalTime.of(openTime, openMin),
+				LocalTime.of(closeTime, closeMin)));
+
 	}
 }
