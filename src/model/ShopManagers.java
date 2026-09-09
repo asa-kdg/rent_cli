@@ -49,23 +49,62 @@ public class ShopManagers {
 		return null;
 	}
 
-	public void addShop() {
+	public static void addShop() {
 
 		System.out.println("店舗名を入力してください");
 		String storeName = scan.next();
 		System.out.println("開店時間の時を入力してください");
 		int openTime = scan.nextInt();
-		System.out.println("開店時間の時を入力してください");
+		System.out.println("開店時間の分を入力してください");
 		int openMin = scan.nextInt();
 		System.out.println("閉店時間の時を入力してください");
 		int closeTime = scan.nextInt();
-		System.out.println("閉店時間の時を入力してください");
+		System.out.println("閉店時間の分を入力してください");
 		int closeMin = scan.nextInt();
 
 		shops.add(new Shop(
 				storeName,
 				LocalTime.of(openTime, openMin),
 				LocalTime.of(closeTime, closeMin)));
+
+	}
+
+	public static void updateShop() {
+		System.out.println("どこの店舗を変更しますか");
+		int x = 1;
+		for (Shop shop : shops) {
+			System.out.println(x + ":" + shop.getName());
+			x += 1;
+		}
+		int shopSelect = scan.nextInt();
+		Shop selectedShop = shops.get(shopSelect - 1);
+
+		System.out.println("何を変更しますか");
+		System.out.println("1:店舗名");
+		System.out.println("2:開店時間");
+		System.out.println("3:閉店時間");
+		System.out.println("4:何も変更しない");
+
+		int select = scan.nextInt();
+		if (select == 1) {
+			System.out.println("新しく設定する店舗名を入力してください");
+			String newStorename = scan.next();
+			selectedShop.setName(newStorename);
+		} else if (select == 2) {
+			System.out.println("新しく開店時間の時を入力してください");
+			int openTime = scan.nextInt();
+			System.out.println("新しく開店時間の分を入力してください");
+			int openMin = scan.nextInt();
+			selectedShop.setOpenTime(LocalTime.of(openTime, openMin));
+
+		} else if (select == 3) {
+			System.out.println("新しく閉店時間の時を入力してください");
+			int closeTime = scan.nextInt();
+			System.out.println("新しく閉店時間の分を入力してください");
+			int closeMin = scan.nextInt();
+			selectedShop.setOpenTime(LocalTime.of(closeTime, closeMin));
+
+		}
 
 	}
 }
