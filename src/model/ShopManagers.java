@@ -108,4 +108,14 @@ public class ShopManagers {
 
 	}
 
+	public void showShop() {
+		System.out.println("店舗一覧");
+		int x = 1;
+
+		for (Shop shop : shops) {
+			System.out.println(x + ":" + shop.getInfo());
+			x++;
+		}
+	}
+
 }
