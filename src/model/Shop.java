@@ -53,7 +53,6 @@ public class Shop {
 		this.cars = cars;
 	}
 
-	///車を追加
 	public void addCar(Car car) {
 		cars.add(car);
 	}
