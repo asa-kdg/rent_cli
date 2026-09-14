@@ -57,7 +57,7 @@ public class Shop {
 		cars.add(car);
 	}
 
-	public String getInfo() {
+	public String getInfoShop() {
 		return name + "店　開店時間" + openTime + "　閉店時間" + closeTime;
 	}
 

@@ -53,4 +53,8 @@ public class Car {
 		this.catergory = catergory;
 	}
 
+	public String getInfoCar() {
+		return "車名:" + name + "値段: 1時間あたり" + price + "円";
+	}
+
 }
