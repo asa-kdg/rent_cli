@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import carmodel.CreateCarList;
+
 public class ShopManagers {
 	static Scanner scan = new Scanner(System.in);
 
@@ -35,7 +37,20 @@ public class ShopManagers {
 				LocalTime.of(20, 30)));
 	}
 
-	public List<Shop> getShops(String name) {
+	public static void createCars() {
+
+		Shop kinshi = ShopManagers.getShop("錦糸町");
+		Shop kame = ShopManagers.getShop("亀戸");
+		Shop sky = ShopManagers.getShop("スカイツリー");
+		Shop kasai = ShopManagers.getShop("葛西");
+
+		CreateCarList.registerKinshiCars(kinshi);
+		CreateCarList.registerKameCars(kame);
+		CreateCarList.registerSkyCars(sky);
+		CreateCarList.registerKasaiCars(kasai);
+	}
+
+	public List<Shop> getShops() {
 		return shops;
 	}
 
@@ -102,7 +117,7 @@ public class ShopManagers {
 			int closeTime = scan.nextInt();
 			System.out.println("新しく閉店時間の分を入力してください");
 			int closeMin = scan.nextInt();
-			selectedShop.setOpenTime(LocalTime.of(closeTime, closeMin));
+			selectedShop.setCloseTime(LocalTime.of(closeTime, closeMin));
 
 		}
 
