@@ -128,7 +128,7 @@ public class ShopManagers {
 		int x = 1;
 
 		for (Shop shop : shops) {
-			System.out.println(x + ":" + shop.getInfo());
+			System.out.println(x + ":" + shop.getInfoShop());
 			x++;
 		}
 	}

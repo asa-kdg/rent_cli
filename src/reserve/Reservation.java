@@ -70,4 +70,8 @@ public class Reservation {
 		this.rentaLocalTime = rentaLocalTime;
 	}
 
+	public String getInfoReservation() {
+		return "予約名義" + user + "車両" + car_number + "貸出時間" + startTime + "返却時間" + finishTime;
+	}
+
 }

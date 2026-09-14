@@ -1,4 +1,4 @@
-package admin;
+package main;
 
 public class Admin {
 	private String Id = "admin";
