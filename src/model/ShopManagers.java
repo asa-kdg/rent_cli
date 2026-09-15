@@ -123,7 +123,7 @@ public class ShopManagers {
 
 	}
 
-	public void showShop() {
+	public static void showShop() {
 		System.out.println("店舗一覧");
 		int x = 1;
 
