@@ -1,6 +1,6 @@
 package carmodel;
 
-import model.Shop;
+import shop.Shop;
 
 public class CreateCarList {
 	public static void registerKinshiCars(Shop shop) {

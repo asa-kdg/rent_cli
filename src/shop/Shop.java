@@ -1,4 +1,4 @@
-package model;
+package shop;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
