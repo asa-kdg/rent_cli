@@ -9,14 +9,16 @@ public class Car {
 	private String name;
 	private int car_number;
 	private int price;
+	private int passengers;
 	private String catergory;
 	private List<Reservation> reserve;
 
-	public Car(String name, int car_number, int price, String catergory) {
+	public Car(String name, int car_number, int price, int passengers, String catergory) {
 		this.name = name;
 		this.car_number = car_number;
 		this.price = price;
 		this.catergory = catergory;
+		this.passengers = passengers;
 		this.reserve = new ArrayList<>();
 
 	}
@@ -43,6 +45,14 @@ public class Car {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public int getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(int passengers) {
+		this.passengers = passengers;
 	}
 
 	public String getCatergory() {
