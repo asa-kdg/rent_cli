@@ -1,27 +1,17 @@
 package carmodel;
 
 public class Va extends Car {
-	private int passengers;
+
 	private int capacity;
 
+	public Va(String name, int car_number, int capacity) {
+		super(name, car_number, 2000, 3, "Tc");
+		this.capacity = capacity;
+	}
+
 	public Va(String name, int car_number, int price, int capacity) {
-		super(name, car_number, price, "Tc");
-		this.passengers = 4;
+		super(name, car_number, price, 5, "Va");
 		this.capacity = capacity;
-	}
-
-	public Va(String name, int car_number, int price, int passengers, int capacity) {
-		super(name, car_number, price, "Va");
-		this.passengers = passengers;
-		this.capacity = capacity;
-	}
-
-	public int getPassengers() {
-		return passengers;
-	}
-
-	public void setPassengers(int passengers) {
-		this.passengers = passengers;
 	}
 
 	public int getCapacity() {
