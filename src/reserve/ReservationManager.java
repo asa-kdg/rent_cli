@@ -3,7 +3,7 @@ package reserve;
 import java.util.List;
 import java.util.Scanner;
 
-import model.ShopManagers;
+import shop.ShopManagers;
 
 public class ReservationManager {
 	static Scanner scan = new Scanner(System.in);
