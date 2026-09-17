@@ -10,14 +10,14 @@ public class Car {
 	private int car_number;
 	private int price;
 	private int passengers;
-	private String catergory;
+	private String category;
 	private List<Reservation> reserve;
 
-	public Car(String name, int car_number, int price, int passengers, String catergory) {
+	public Car(String name, int car_number, int price, int passengers, String category) {
 		this.name = name;
 		this.car_number = car_number;
 		this.price = price;
-		this.catergory = catergory;
+		this.category = category;
 		this.passengers = passengers;
 		this.reserve = new ArrayList<>();
 
@@ -55,12 +55,12 @@ public class Car {
 		this.passengers = passengers;
 	}
 
-	public String getCatergory() {
-		return catergory;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCatergory(String catergory) {
-		this.catergory = catergory;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getInfoCar() {

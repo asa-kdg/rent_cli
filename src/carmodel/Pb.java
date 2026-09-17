@@ -1,24 +1,13 @@
 package carmodel;
 
 public class Pb extends Car {
-	private int passengers;
 
 	public Pb(String name, int car_number) {
-		super(name, car_number, 1700, "Pb");
-		this.passengers = 8;
+		super(name, car_number, 1700, 8, "Pb");
 	}
 
-	public Pb(String name, int car_number, int price, int passengers) {
-		super(name, car_number, price, "Pb");
-		this.passengers = passengers;
-	}
-
-	public int getPassengers() {
-		return passengers;
-	}
-
-	public void setPassengers(int passengers) {
-		this.passengers = passengers;
+	public Pb(String name, int car_number, int price) {
+		super(name, car_number, price, 6, "La");
 	}
 
 }
