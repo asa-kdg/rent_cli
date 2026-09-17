@@ -17,12 +17,12 @@ public class CreateCarList {
 		shop.addCar(new Cx("クロストレック", 3126, 1300));
 		shop.addCar(new Cx("イクリプスクロス", 3129, 1300));
 		shop.addCar(new Cx("イクリプスクロス", 3129, 1300));
-		shop.addCar(new Pb("ヴォクシー", 2111, 0, 7));
-		shop.addCar(new Pb("ヴォクシー", 2112, 0, 7));
-		shop.addCar(new Pb("シエンタ", 2113, 1600, 7));
+		shop.addCar(new Pb("シエンタ", 2111, 1600));
+		shop.addCar(new Pb("フリード", 2112, 1600));
+		shop.addCar(new Pb("シエンタ", 2113, 1600));
 		shop.addCar(new Pb("セレナ", 2114));
 		shop.addCar(new Pb("デリカ", 2117));
-		shop.addCar(new Pb("アルファード", 2120, 2000, 7));
+		shop.addCar(new Pb("ノア", 2120));
 		shop.addCar(new Va("キャラバン", 4111, 1500, 1000));
 		shop.addCar(new Va("ハイエース", 4112, 1500, 1000));
 		shop.addCar(new Va("キャラバン", 4113, 1500, 1000));
@@ -43,8 +43,8 @@ public class CreateCarList {
 		shop.addCar(new Cx("イクリプスクロス", 3128, 1300));
 		shop.addCar(new Pb("セレナ", 2115));
 		shop.addCar(new Pb("デリカ", 2116));
-		shop.addCar(new Pb("シエンタ", 2118, 1600, 6));
-		shop.addCar(new Pb("アルファード", 2119, 2000, 7));
+		shop.addCar(new Pb("シエンタ", 2118, 1600));
+		shop.addCar(new Pb("ノア", 2119));
 		shop.addCar(new Va("キャラバン", 4118, 1500, 1000));
 		shop.addCar(new Va("ハイエース", 4119, 1500, 1000));
 
@@ -58,8 +58,8 @@ public class CreateCarList {
 		shop.addCar(new Cx("クロストレック", 3125, 1300));
 		shop.addCar(new Cx("ライズ", 3126));
 		shop.addCar(new Cx("イクリプスクロス", 3127, 1300));
-		shop.addCar(new Pb("シエンタ", 2120, 1600, 6));
-		shop.addCar(new Pb("アルファード", 2121, 2000, 7));
+		shop.addCar(new Pb("シエンタ", 2120, 1600));
+		shop.addCar(new Pb("セレナ", 2121));
 		shop.addCar(new Pb("セレナ", 2122));
 		shop.addCar(new Pb("デリカ", 2123));
 
@@ -73,7 +73,7 @@ public class CreateCarList {
 		shop.addCar(new Cx("クロストレック", 3129, 1300));
 		shop.addCar(new Cx("ライズ", 3130));
 		shop.addCar(new Cx("イクリプスクロス", 3131, 1300));
-		shop.addCar(new Pb("シエンタ", 2124, 1600, 6));
+		shop.addCar(new Pb("シエンタ", 2124, 1600));
 		shop.addCar(new Pb("セレナ", 2125));
 		shop.addCar(new Pb("デリカ", 2126));
 		shop.addCar(new Va("デュトロ", 4120, 2000));

@@ -50,7 +50,7 @@ public class ShopManagers {
 		CreateCarList.registerKasaiCars(kasai);
 	}
 
-	public List<Shop> getShops() {
+	public static List<Shop> getShops() {
 		return shops;
 	}
 
