@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -105,7 +106,27 @@ public class UserMethod {
 
 	//予約
 	public static void book() {
-		chooseShop();
+		System.out.println("レンタカーの予約をします");
+		String shopName = chooseShop();
+
+	}
+
+	public static LocalDateTime choseDateTime(String when) {
+		System.out.println(when + "日時を入力してください");
+		System.out.println("「年」を入力してください(2026-)");
+		int year = scan.nextInt();
+		System.out.println("「月」を入力してください(1-12)");
+		int month = scan.nextInt();
+		System.out.println("「日」を入力してください(1-31)");
+		int date = scan.nextInt();
+		System.out.println("「時」を入力してください(0-23)");
+		int hour = scan.nextInt();
+		System.out.println("「分」を入力してください(0-59)");
+		int min = scan.nextInt();
+
+		LocalDateTime DateTime = LocalDateTime.of(year, month, date, hour, min);
+
+		return DateTime;
 
 	}
 }
