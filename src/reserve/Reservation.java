@@ -1,7 +1,6 @@
 package reserve;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Reservation {
 	private int reserveId;
@@ -9,17 +8,17 @@ public class Reservation {
 	private int car_number;
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
-	private LocalTime rentaLocalTime;
+	private int totalTime;
 
 	public Reservation(int reserveId, String user, int car_number, LocalDateTime startTime, LocalDateTime finishTime,
-			LocalTime rentaLocalTime) {
+			int totalTime) {
 
 		this.reserveId = reserveId;
 		this.user = user;
 		this.car_number = car_number;
 		this.startTime = startTime;
 		this.finishTime = finishTime;
-		this.rentaLocalTime = rentaLocalTime;
+		this.totalTime = totalTime;
 	}
 
 	public int getReserveId() {
@@ -62,12 +61,12 @@ public class Reservation {
 		this.finishTime = finishTime;
 	}
 
-	public LocalTime getRentaLocalTime() {
-		return rentaLocalTime;
+	public int getTotalTime() {
+		return totalTime;
 	}
 
-	public void setRentaLocalTime(LocalTime rentaLocalTime) {
-		this.rentaLocalTime = rentaLocalTime;
+	public void setTotalTime(int totalTime) {
+		this.totalTime = totalTime;
 	}
 
 	public String getInfoReservation() {
