@@ -1,6 +1,7 @@
 package main;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -107,26 +108,44 @@ public class UserMethod {
 	//予約
 	public static void book() {
 		System.out.println("レンタカーの予約をします");
+		//店舗指定
 		String shopName = chooseShop();
+		//時間指定
+		LocalDateTime startDateTime = choseDateTime("貸出", shopName);
+		LocalDateTime finDateTime = choseDateTime("返却", shopName);
+		//車の選択
 
 	}
 
-	public static LocalDateTime choseDateTime(String when) {
-		System.out.println(when + "日時を入力してください");
-		System.out.println("「年」を入力してください(2026-)");
-		int year = scan.nextInt();
-		System.out.println("「月」を入力してください(1-12)");
-		int month = scan.nextInt();
-		System.out.println("「日」を入力してください(1-31)");
-		int date = scan.nextInt();
-		System.out.println("「時」を入力してください(0-23)");
-		int hour = scan.nextInt();
-		System.out.println("「分」を入力してください(0-59)");
-		int min = scan.nextInt();
+	//時間の指定
+	public static LocalDateTime choseDateTime(String when, String shopName) {
+		while (true) {
+			System.out.println(when + "日時を入力してください");
+			System.out.println("「年」を入力してください(2026-)");
+			int year = scan.nextInt();
+			System.out.println("「月」を入力してください(1-12)");
+			int month = scan.nextInt();
+			System.out.println("「日」を入力してください(1-31)");
+			int date = scan.nextInt();
+			System.out.println("「時」を入力してください(0-23)");
+			int hour = scan.nextInt();
+			System.out.println("「分」を入力してください(0-59)");
+			int min = scan.nextInt();
 
-		LocalDateTime DateTime = LocalDateTime.of(year, month, date, hour, min);
+			LocalDateTime DateTime = LocalDateTime.of(year, month, date, hour, min);
 
-		return DateTime;
+			LocalTime selectedTime = DateTime.toLocalTime();
+			Shop shop = ShopManagers.getShop(shopName);
+			LocalTime shopOpen = shop.getOpenTime();
+			LocalTime shopClose = shop.getCloseTime();
 
+			if (selectedTime.isBefore(shopOpen) || selectedTime.isAfter(shopClose)) {
+				System.out.println("営業時間外です。営業時間内の時間を指定してください。");
+				System.out.println(shopName + "店　営業時間　" + shopOpen + "-" + shopClose);
+
+			} else {
+				return DateTime;
+			}
+		}
 	}
 }
