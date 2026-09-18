@@ -1,5 +1,6 @@
 package shop;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,4 +62,25 @@ public class Shop {
 		return name + "店　開店時間" + openTime + "　閉店時間" + closeTime;
 	}
 
+	//空き車両検索
+	public void shopFreeCar(LocalDateTime straTime, LocalDateTime finTime) {
+		int x = 0;
+		for (Car c : cars) {
+			if (c.isAvailable(straTime, finTime)) {
+				System.out.println(x + ". "
+						+ c.getName()
+						+ "  "
+						+ c.getCategory()
+						+ "クラス　基本料金:"
+						+ c.getPrice()
+						+ "円　乗車人数"
+						+ c.getPassengers()
+						+ "人　車種例"
+						+ c.getName());
+
+				x++;
+			}
+		}
+
+	}
 }

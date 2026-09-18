@@ -1,5 +1,6 @@
 package carmodel;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Car {
 	private int price;
 	private int passengers;
 	private String category;
-	private List<Reservation> reserve;
+	private List<Reservation> reservations;
 
 	public Car(String name, int car_number, int price, int passengers, String category) {
 		this.name = name;
@@ -19,7 +20,7 @@ public class Car {
 		this.price = price;
 		this.category = category;
 		this.passengers = passengers;
-		this.reserve = new ArrayList<>();
+		this.reservations = new ArrayList<>();
 
 	}
 
@@ -63,8 +64,32 @@ public class Car {
 		this.category = category;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	public String getInfoCar() {
 		return "車名:" + name + "値段: 1時間あたり" + price + "円";
+	}
+
+	//この時間に車両が使用可能か
+	public boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
+		for (Reservation r : reservations) {
+			LocalDateTime startReserved = r.getStartTime();
+			LocalDateTime finReserved = r.getFinishTime();
+
+			if (startDate.isBefore(finReserved.plusHours(1)) &&
+					finDate.isAfter(startReserved.minusHours(1))) {
+				return false;
+			}
+
+		}
+		return true;
+
 	}
 
 }
