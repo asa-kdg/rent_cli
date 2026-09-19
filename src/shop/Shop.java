@@ -11,7 +11,7 @@ public class Shop {
 	private String name;
 	private LocalTime openTime;
 	private LocalTime closeTime;
-	private List<Car> cars;
+	private static List<Car> cars;
 
 	public Shop(String name, LocalTime openTime, LocalTime closeTime) {
 		this.name = name;
@@ -63,10 +63,13 @@ public class Shop {
 	}
 
 	//空き車両検索
-	public void shopFreeCar(LocalDateTime straTime, LocalDateTime finTime) {
-		int x = 0;
+	public static List<Car> shopFreeCar(LocalDateTime straTime, LocalDateTime finTime) {
+		int x = 1;
+		List<Car> freeCars = new ArrayList<Car>();
 		for (Car c : cars) {
 			if (c.isAvailable(straTime, finTime)) {
+				freeCars.add(c);
+
 				System.out.println(x + ". "
 						+ c.getName()
 						+ "  "
@@ -81,6 +84,7 @@ public class Shop {
 				x++;
 			}
 		}
+		return freeCars;
 
 	}
 }
