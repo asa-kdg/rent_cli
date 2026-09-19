@@ -113,7 +113,16 @@ public class UserMethod {
 		//時間指定
 		LocalDateTime startDateTime = choseDateTime("貸出", shopName);
 		LocalDateTime finDateTime = choseDateTime("返却", shopName);
-		//車の選択
+		//空き車両の表示
+		List<Car> freecars = Shop.shopFreeCar(startDateTime, finDateTime);
+		//空き車両の有無
+		if (freecars.isEmpty()) {
+			System.out.println("空き車両がありません");
+			return;
+		}
+		//予約車両の選択
+		int selected = selectCar(freecars);
+		int carNumber = freecars.get(selected).getCar_number();
 
 	}
 
@@ -148,4 +157,19 @@ public class UserMethod {
 			}
 		}
 	}
+
+	//予約車両の選択(番号選択の条件)
+	public static int selectCar(List<Car> freecar) {
+		while (true) {
+			System.out.println("予約する車両を選択してください");
+			int select = scan.nextInt() - 1;
+
+			if (select < 0 || select >= freecar.size()) {
+				System.out.println("正しい車両番号を指定してください");
+				continue;
+			}
+			return select;
+		}
+	}
+
 }

@@ -8,7 +8,7 @@ public class ReservationManager {
 
 	private static List<Reservation> reservations;
 
-	public static void createResevation() {
+	public static void createResevation(String shopName, int carNumber) {
 
 	}
 
