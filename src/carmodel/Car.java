@@ -12,7 +12,7 @@ public class Car {
 	private int price;
 	private int passengers;
 	private String category;
-	private static List<Reservation> reservations;
+	private List<Reservation> reservations;
 
 	public Car(String name, int car_number, int price, int passengers, String category) {
 		this.name = name;
@@ -72,7 +72,7 @@ public class Car {
 		this.reservations = reservations;
 	}
 
-	public static void addReservation(Reservation reservation) {
+	public void addReservation(Reservation reservation) {
 		reservations.add(reservation);
 	}
 
