@@ -76,6 +76,10 @@ public class Car {
 		reservations.add(reservation);
 	}
 
+	public static void removeReservation(Reservation reservation) {
+		reservations.remove(reservation);
+	}
+
 	public String getInfoCar() {
 		return "車名:" + name + "値段: 1時間あたり" + price + "円";
 	}

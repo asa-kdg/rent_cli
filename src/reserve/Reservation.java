@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Reservation {
 	private static int reserveId;
-	private String user;
+	private static String user;
 	private int car_number;
 	private String shop;
 	private LocalDateTime startTime;
@@ -32,7 +32,7 @@ public class Reservation {
 		this.reserveId = reserveId;
 	}
 
-	public String getUser() {
+	public static String getUser() {
 		return user;
 	}
 
