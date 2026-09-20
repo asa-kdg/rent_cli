@@ -25,7 +25,7 @@ public class UserMethod {
 			System.out.println("3:予約");
 			System.out.println("4:予約確認");
 			System.out.println("5:予約キャンセル");
-			System.out.println("5:予約変更");
+			System.out.println("6:予約時間変更");
 			int selectFunc = scan.nextInt();
 
 			switch (selectFunc) {
@@ -46,14 +46,14 @@ public class UserMethod {
 				break;
 			}
 			case 5: {
-				System.out.println("予約IDを入力してください");
-				int reId = scan.nextInt();
-				System.out.println("予約者名を入力してください");
-				String reName = scan.next();
-				cancelReservation(reName, reId);
+				int cancelId = inputId();
+				String cancelName = inputName();
+				cancelReservation(cancelName, cancelId);
+				break;
 			}
 			case 6: {
-
+				changeReservation();
+				break;
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + selectFunc);
@@ -140,8 +140,7 @@ public class UserMethod {
 		//予約車両の選択
 		Car selected = selectCar(freecars);
 		//予約
-		System.out.println("予約者の名前を入力してください");
-		String name = scan.next();
+		String name = inputName();
 		Reservation newReservation = ReservationManager.createResevation(selected, name, shopName, startDateTime,
 				finDateTime);
 		System.out.println("予約が完了しました");
@@ -199,10 +198,8 @@ public class UserMethod {
 
 	public static void checkReservation() {
 		System.out.println("予約の確認をします");
-		System.out.println("予約IDを入力してください");
-		int reId = scan.nextInt();
-		System.out.println("予約者名を入力してください");
-		String reName = scan.next();
+		int reId = inputId();
+		String reName = inputName();
 		Reservation checkReserve = ReservationManager.findResevation(reName, reId);
 		if (checkReserve == null) {
 			System.out.println("予約が見つかりませんでした");
@@ -238,7 +235,38 @@ public class UserMethod {
 
 	//予約変更
 	public static void changeReservation() {
+		System.out.println("予約時間を変更します");
+		int changeId = inputId();
+		String changeName = inputName();
+		Reservation changeReserve = ReservationManager.findResevation(changeName, changeId);
+		if (changeReserve == null) {
+			System.out.println("予約が見つかりません");
+		} else {
+			LocalDateTime newStartTime = choseDateTime("新しい開始", changeReserve.getShop());
+			LocalDateTime newFinTime = choseDateTime("新しい返却", changeReserve.getShop());
+			Boolean check = Car.isAvailable(newStartTime, newFinTime);
+			if (check) {
+				ReservationManager.updateReservation(changeReserve, newStartTime, newFinTime);
+				System.out.println("変更が完了しました");
+				ReservationManager.showReservation(changeReserve);
+				System.out.println("予約情報を確認、変更およびキャンセルする場合は名前、予約者IDが必要になります");
+				System.out.println("必ず保管してください");
+			} else {
+				System.out.println("その時間はすでに予約が埋まっています");
+			}
+		}
 
 	}
 
+	public static int inputId() {
+		System.out.println("予約IDを入力してください");
+		int reId = scan.nextInt();
+		return reId;
+	}
+
+	public static String inputName() {
+		System.out.println("予約者名を入力してください");
+		String reName = scan.next();
+		return reName;
+	}
 }
