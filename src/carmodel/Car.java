@@ -85,7 +85,7 @@ public class Car {
 	}
 
 	//この時間に車両が使用可能か
-	public boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
+	public static boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
 		for (Reservation r : reservations) {
 			LocalDateTime startReserved = r.getStartTime();
 			LocalDateTime finReserved = r.getFinishTime();
