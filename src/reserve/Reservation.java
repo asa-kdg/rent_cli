@@ -3,25 +3,28 @@ package reserve;
 import java.time.LocalDateTime;
 
 public class Reservation {
-	private int reserveId;
+	private static int reserveId;
 	private String user;
 	private int car_number;
+	private String shop;
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
 	private int totalTime;
 
-	public Reservation(int reserveId, String user, int car_number, LocalDateTime startTime, LocalDateTime finishTime,
+	public Reservation(int reserveId, String user, int car_number, String shop, LocalDateTime startTime,
+			LocalDateTime finishTime,
 			int totalTime) {
 
 		this.reserveId = reserveId;
 		this.user = user;
 		this.car_number = car_number;
+		this.shop = shop;
 		this.startTime = startTime;
 		this.finishTime = finishTime;
 		this.totalTime = totalTime;
 	}
 
-	public int getReserveId() {
+	public static int getReserveId() {
 		return reserveId;
 	}
 
@@ -43,6 +46,14 @@ public class Reservation {
 
 	public void setCar_number(int car_number) {
 		this.car_number = car_number;
+	}
+
+	public String getShop() {
+		return shop;
+	}
+
+	public void setShop(String shop) {
+		this.shop = shop;
 	}
 
 	public LocalDateTime getStartTime() {

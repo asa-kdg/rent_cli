@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import carmodel.Car;
 import carmodel.Va;
+import reserve.Reservation;
 import reserve.ReservationManager;
 import shop.Shop;
 import shop.ShopManagers;
@@ -36,7 +37,16 @@ public class UserMethod {
 				break;
 			}
 			case 3: {
-				//予約メソッド
+				book();
+				break;
+			}
+			case 4: {
+
+			}
+			case 5: {
+
+			}
+			case 6: {
 
 			}
 			default:
@@ -123,11 +133,13 @@ public class UserMethod {
 		}
 		//予約車両の選択
 		Car selected = selectCar(freecars);
-		//予約者情報の登録
+		//予約
 		System.out.println("予約者の名前を入力してください");
 		String name = scan.next();
-		ReservationManager.createResevation(selected, name, startDateTime, finDateTime);
+		Reservation newReservation = ReservationManager.createResevation(selected, name, shopName, startDateTime,
+				finDateTime);
 		System.out.println("予約が完了しました");
+		ReservationManager.showReservation(newReservation);
 
 	}
 
