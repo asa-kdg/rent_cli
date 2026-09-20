@@ -123,6 +123,9 @@ public class UserMethod {
 		//予約車両の選択
 		int selected = selectCar(freecars);
 		int carNumber = freecars.get(selected).getCar_number();
+		//予約者情報の登録
+		System.out.println("予約者の名前を入力してください");
+		String name = scan.next();
 
 	}
 

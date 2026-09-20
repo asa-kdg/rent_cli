@@ -12,7 +12,7 @@ public class Car {
 	private int price;
 	private int passengers;
 	private String category;
-	private List<Reservation> reservations;
+	private static List<Reservation> reservations;
 
 	public Car(String name, int car_number, int price, int passengers, String category) {
 		this.name = name;
@@ -70,6 +70,10 @@ public class Car {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public static void addReservation(Reservation reservation) {
+		reservations.add(reservation);
 	}
 
 	public String getInfoCar() {
