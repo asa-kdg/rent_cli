@@ -11,7 +11,8 @@ public class ReservationManager {
 
 	private static int useReserveId = 1000;
 
-	public static void createResevation(int carNumber, String name,
+	public static void createResevation(Car car,
+			String name,
 			LocalDateTime startTime, LocalDateTime finTime) {
 		int reserveId = useReserveId + 1;
 		//貸出時間切り上げ
@@ -20,12 +21,14 @@ public class ReservationManager {
 		Reservation reservation = new Reservation(
 				reserveId,
 				name,
-				carNumber,
+				car.getCar_number(),
 				startTime,
 				finTime,
 				totalTime);
 
-		Car.addReservation(reservation);
+		car.addReservation(reservation);
+
+		useReserveId++;
 
 	}
 

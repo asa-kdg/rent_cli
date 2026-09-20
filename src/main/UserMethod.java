@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import carmodel.Car;
 import carmodel.Va;
+import reserve.ReservationManager;
 import shop.Shop;
 import shop.ShopManagers;
 
@@ -121,11 +122,12 @@ public class UserMethod {
 			return;
 		}
 		//予約車両の選択
-		int selected = selectCar(freecars);
-		int carNumber = freecars.get(selected).getCar_number();
+		Car selected = selectCar(freecars);
 		//予約者情報の登録
 		System.out.println("予約者の名前を入力してください");
 		String name = scan.next();
+		ReservationManager.createResevation(selected, name, startDateTime, finDateTime);
+		System.out.println("予約が完了しました");
 
 	}
 
@@ -162,7 +164,7 @@ public class UserMethod {
 	}
 
 	//予約車両の選択(番号選択の条件)
-	public static int selectCar(List<Car> freecar) {
+	public static Car selectCar(List<Car> freecar) {
 		while (true) {
 			System.out.println("予約する車両を選択してください");
 			int select = scan.nextInt() - 1;
@@ -171,7 +173,7 @@ public class UserMethod {
 				System.out.println("正しい車両番号を指定してください");
 				continue;
 			}
-			return select;
+			return freecar.get(select);
 		}
 	}
 
