@@ -13,6 +13,8 @@ public class ReservationManager {
 
 	//予約番号の自動取得
 	private static int useReserveId = 1000;
+	//店舗情報
+	private static List<Shop> shops;
 
 	//予約
 	public static Reservation createResevation(Car car,
@@ -55,13 +57,28 @@ public class ReservationManager {
 	}
 
 	//予約検索(店舗指定あり)主にadmin側で使用
-	public static Reservation findResevation(
-			Shop shop, int reserveId) {
-
+	public static Reservation findResevation(Shop shop, int reserveId) {
 		for (Car c : shop.getCars()) {
 			for (Reservation re : Car.getReservations()) {
 				if (Reservation.getReserveId() == reserveId) {
 					return re;
+				}
+			}
+		}
+		return null;
+	}
+
+	//予約検索(店舗指定なし)主にadmin側で使用
+	public static Reservation findResevation(
+			String name, int reserveId) {
+
+		for (Shop shop : shops) {
+			for (Car c : shop.getCars()) {
+				for (Reservation re : c.getReservations()) {
+					if (Reservation.getReserveId() == reserveId &&
+							Reservation.getUser() == name) {
+						return re;
+					}
 				}
 			}
 		}

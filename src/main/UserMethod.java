@@ -41,6 +41,8 @@ public class UserMethod {
 				break;
 			}
 			case 4: {
+				checkReservation();
+				break;
 
 			}
 			case 5: {
@@ -140,6 +142,8 @@ public class UserMethod {
 				finDateTime);
 		System.out.println("予約が完了しました");
 		ReservationManager.showReservation(newReservation);
+		System.out.println("予約情報を確認、変更およびキャンセルする場合は名前、予約者IDが必要になります");
+		System.out.println("必ず保管してください");
 
 	}
 
@@ -186,6 +190,44 @@ public class UserMethod {
 				continue;
 			}
 			return freecar.get(select);
+		}
+	}
+
+	public static void checkReservation() {
+		System.out.println("予約の確認をします");
+		System.out.println("予約IDを入力してください");
+		int reId = scan.nextInt();
+		System.out.println("予約者名を入力してください");
+		String reName = scan.next();
+		Reservation checkReserve = ReservationManager.findResevation(reName, reId);
+		if (checkReserve == null) {
+			System.out.println("予約が見つかりませんでした");
+			return;
+		} else {
+			ReservationManager.showReservation(checkReserve);
+			String shop = checkReserve.getShop();
+			System.out.println("店舗 " + shop + "店");
+		}
+
+		System.out.println("予約の変更、キャンセルを行いますか？");
+		System.out.println("1:予約変更");
+		System.out.println("2:予約キャンセル");
+		System.out.println("3:変更しない");
+		int x = scan.nextInt();
+		if (x == 1) {
+
+		} else if (x == 2) {
+			cancelReservation(reName, reId);
+		} else if (!(x == 3)) {
+		}
+	}
+
+	public static void cancelReservation(String name, int Id) {
+		Reservation cancelReservation = ReservationManager.findResevation(name, Id);
+		if (cancelReservation == null) {
+			System.out.println("予約が見つかりませんでした。");
+		} else {
+			Car.removeReservation(cancelReservation);
 		}
 	}
 
