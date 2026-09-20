@@ -24,7 +24,8 @@ public class UserMethod {
 			System.out.println("2:車種クラス一覧表示");
 			System.out.println("3:予約");
 			System.out.println("4:予約確認");
-			System.out.println("5:予約変更、キャンセル");
+			System.out.println("5:予約キャンセル");
+			System.out.println("5:予約変更");
 			int selectFunc = scan.nextInt();
 
 			switch (selectFunc) {
@@ -43,10 +44,13 @@ public class UserMethod {
 			case 4: {
 				checkReservation();
 				break;
-
 			}
 			case 5: {
-
+				System.out.println("予約IDを入力してください");
+				int reId = scan.nextInt();
+				System.out.println("予約者名を入力してください");
+				String reName = scan.next();
+				cancelReservation(reName, reId);
 			}
 			case 6: {
 
@@ -222,6 +226,7 @@ public class UserMethod {
 		}
 	}
 
+	//予約キャンセル
 	public static void cancelReservation(String name, int Id) {
 		Reservation cancelReservation = ReservationManager.findResevation(name, Id);
 		if (cancelReservation == null) {
@@ -229,6 +234,11 @@ public class UserMethod {
 		} else {
 			Car.removeReservation(cancelReservation);
 		}
+	}
+
+	//予約変更
+	public static void changeReservation() {
+
 	}
 
 }

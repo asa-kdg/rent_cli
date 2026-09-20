@@ -16,13 +16,19 @@ public class ReservationManager {
 	//店舗情報
 	private static List<Shop> shops;
 
+	//トータル時間計算
+	public static int calcTotalTime(LocalDateTime sTime, LocalDateTime fTime) {
+		int totalTime = (int) Duration.between(sTime, fTime).toMinutes() / 60;
+		return totalTime;
+	}
+
 	//予約
 	public static Reservation createResevation(Car car,
 			String name, String shop,
 			LocalDateTime startTime, LocalDateTime finTime) {
 		int reserveId = useReserveId + 1;
 		//貸出時間切り上げ
-		int totalTime = (int) Duration.between(startTime, finTime).toMinutes() / 60;
+		int totalTime = calcTotalTime(startTime, finTime);
 
 		Reservation reservation = new Reservation(
 				reserveId,
@@ -83,6 +89,15 @@ public class ReservationManager {
 			}
 		}
 		return null;
+	}
+
+	//予約情報の更新(時間のみ)
+	public static void updateReservation(Reservation reservation, LocalDateTime newStartTime,
+			LocalDateTime newFinTime) {
+		int totalTime = calcTotalTime(newStartTime, newFinTime);
+		reservation.setStartTime(newStartTime);
+		reservation.setFinishTime(newFinTime);
+		reservation.setTotalTime(totalTime);
 	}
 
 }
