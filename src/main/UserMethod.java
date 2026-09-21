@@ -52,7 +52,10 @@ public class UserMethod {
 				break;
 			}
 			case 6: {
-				changeReservation();
+				System.out.println("予約時間を変更します");
+				int changeId = inputId();
+				String changeName = inputName();
+				changeReservation(changeName, changeId);
 				break;
 			}
 			default:
@@ -216,7 +219,7 @@ public class UserMethod {
 		System.out.println("3:変更しない");
 		int x = scan.nextInt();
 		if (x == 1) {
-
+			changeReservation(reName, reId);
 		} else if (x == 2) {
 			cancelReservation(reName, reId);
 		} else if (!(x == 3)) {
@@ -230,14 +233,12 @@ public class UserMethod {
 			System.out.println("予約が見つかりませんでした。");
 		} else {
 			Car.removeReservation(cancelReservation);
+			System.out.println("キャンセルが完了しました。");
 		}
 	}
 
 	//予約変更
-	public static void changeReservation() {
-		System.out.println("予約時間を変更します");
-		int changeId = inputId();
-		String changeName = inputName();
+	public static void changeReservation(String changeName, int changeId) {
 		Reservation changeReserve = ReservationManager.findResevation(changeName, changeId);
 		if (changeReserve == null) {
 			System.out.println("予約が見つかりません");
@@ -255,7 +256,6 @@ public class UserMethod {
 				System.out.println("その時間はすでに予約が埋まっています");
 			}
 		}
-
 	}
 
 	public static int inputId() {
