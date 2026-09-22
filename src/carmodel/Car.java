@@ -100,4 +100,17 @@ public class Car {
 
 	}
 
+	//カテゴリー表示
+	public static void showcategory(List<Car> car) {
+		List<String> categoryList = new ArrayList<>();
+		for (Car c : car) {
+			String cateList = c.getCategory();
+
+			if (!categoryList.contains(cateList)) {
+				categoryList.add(cateList);
+				System.out.println(cateList);
+			}
+		}
+	}
+
 }

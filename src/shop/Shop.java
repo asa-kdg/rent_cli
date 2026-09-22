@@ -46,7 +46,7 @@ public class Shop {
 		this.closeTime = closeTime;
 	}
 
-	public List<Car> getCars() {
+	public static List<Car> getCars() {
 		return cars;
 	}
 
