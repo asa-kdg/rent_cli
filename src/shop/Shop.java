@@ -58,6 +58,10 @@ public class Shop {
 		cars.add(car);
 	}
 
+	public void removeCar(Car car) {
+		cars.remove(car);
+	}
+
 	public String getInfoShop() {
 		return name + "店　開店時間" + openTime + "　閉店時間" + closeTime;
 	}
