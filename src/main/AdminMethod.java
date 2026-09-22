@@ -23,7 +23,8 @@ public class AdminMethod {
 			System.out.println("1:店舗情報更新");
 			System.out.println("2:店舗登録");
 			System.out.println("3:車両登録");
-			System.out.println("4:予約確認");
+			System.out.println("4:車両削除");
+			System.out.println("5:予約確認");
 			System.out.println("5:予約状態変更");
 			System.out.println("6:終了する");
 
@@ -43,9 +44,16 @@ public class AdminMethod {
 				break;
 			}
 			case 4: {
+				addCar();
+				break;
+			}
+			case 5: {
 				checkreserve();
 				break;
-
+			}
+			case 6: {
+				addCar();
+				break;
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + selectFunc);
@@ -141,6 +149,28 @@ public class AdminMethod {
 			}
 		}
 		return null;
+
+	}
+
+	//車両削除
+	public static void deleteCar() {
+		Shop deletedShop = seleShop();
+		List<Car> deleCar = deletedShop.getCars();
+		for (Car de : deleCar) {
+			System.out.println(de.getInfoCars());
+		}
+		System.out.println("どの車を削除しますか 車番を入力してください");
+		int number = scan.nextInt();
+
+		for (Car de : deleCar) {
+			if (de.getCar_number() == number) {
+				deletedShop.removeCar(de);
+				return;
+			}
+			System.out.println("該当する車両はありません");
+			return;
+
+		}
 
 	}
 

@@ -84,6 +84,11 @@ public class Car {
 		return "車名:" + name + "値段: 1時間あたり" + price + "円";
 	}
 
+	public String getInfoCars() {
+		return "車名:" + name + "車番" + car_number + "カテゴリー" + category;
+
+	}
+
 	//この時間に車両が使用可能か
 	public static boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
 		for (Reservation r : reservations) {
