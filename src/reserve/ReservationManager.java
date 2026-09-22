@@ -55,8 +55,6 @@ public class ReservationManager {
 
 	//複数件の予約情報表示
 	public static void showReservations(List<Reservation> reservations) {
-		System.out.println("=====予約情報=====");
-
 		for (Reservation re : reservations) {
 			System.out.println(re.getInfoReservation());
 		}
