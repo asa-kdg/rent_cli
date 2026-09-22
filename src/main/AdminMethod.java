@@ -8,6 +8,8 @@ import carmodel.Car;
 import carmodel.Cx;
 import carmodel.Pb;
 import carmodel.Va;
+import reserve.Reservation;
+import reserve.ReservationManager;
 import shop.Shop;
 import shop.ShopManagers;
 
@@ -38,6 +40,10 @@ public class AdminMethod {
 			}
 			case 3: {
 				addCar();
+				break;
+			}
+			case 4: {
+				checkreserve();
 				break;
 
 			}
@@ -135,6 +141,19 @@ public class AdminMethod {
 			}
 		}
 		return null;
+
+	}
+
+	//予約確認
+	public static void checkreserve() {
+		Shop checkshop = seleShop();
+		List<Car> checkCar = checkshop.getCars();
+		System.out.println("=====予約情報=====");
+		for (Car ch : checkCar) {
+			List<Reservation> cheReservations = ch.getReservations();
+			ReservationManager.showReservations(cheReservations);
+
+		}
 
 	}
 
