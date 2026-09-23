@@ -19,6 +19,10 @@ import shop.ShopManagers;
 public class AdminMethod {
 	static Scanner scan = new Scanner(System.in);
 
+	public static void Login() {
+
+	}
+
 	public static int selectAdminFunction() {
 		System.out.println("どの操作をしますか");
 		scan.nextLine();
@@ -28,8 +32,8 @@ public class AdminMethod {
 			System.out.println("3:車両登録");
 			System.out.println("4:車両削除");
 			System.out.println("5:予約情報確認");
-			System.out.println("5:予約");
-			System.out.println("6:終了する");
+			System.out.println("6:予約");
+			System.out.println("7:終了する");
 
 			int selectFunc = scan.nextInt();
 
@@ -51,11 +55,11 @@ public class AdminMethod {
 				break;
 			}
 			case 5: {
-
+				checkreserve();
 				break;
 			}
 			case 6: {
-
+				bookAdmin(checkFreeCar());
 				break;
 			}
 			default:
@@ -67,14 +71,17 @@ public class AdminMethod {
 
 	}
 
-	public static boolean certificationPass() {
+	//ログイン
+	public static boolean login() {
+		System.out.println("ID入力してください");
+		String id = scan.next();
 		System.out.println("パスワードを入力してください");
-		String pw = scan.next();
-		if (pw == Admin.getPass()) {
+		int pw = scan.nextInt();
+		if (id.equals(Admin.getId()) && pw == Admin.getPassword()) {
 			System.out.println("パスワードが認証されました。");
 			return true;
 		} else {
-			System.out.println("パスワードが違います。");
+			System.out.println("IDまたはパスワードが違います。");
 			return false;
 		}
 	}
@@ -189,9 +196,9 @@ public class AdminMethod {
 	}
 
 	//フリー車の確認
-	public static void checkFreeCar() {
+	public static List<Car> checkFreeCar() {
 		Shop checkshop = seleShop();
-		System.out.println("=====空車確認======");
+		System.out.println("=====予約検索======");
 		System.out.println("検索する開始日を入力してください(2020-09-22)");
 		String stDate = scan.next();
 		System.out.println("検索する開始時間の時を入力してください(13:25)");
@@ -203,8 +210,24 @@ public class AdminMethod {
 		System.out.println("検索する終了時間の時を入力してください(13:25)");
 		String fiTime = scan.next();
 		LocalDateTime fiLocalDateTime = changeLocalDateTime(fiDate, fiTime);
-		Shop.shopFreeCar(stLocalDateTime, fiLocalDateTime, checkshop);
+		List<Car> freeCars = Shop.shopFreeCar(stLocalDateTime, fiLocalDateTime, checkshop);
+		showFreeCarsAdmin(freeCars);
+		return freeCars;
 
+	}
+
+	//空き車両表示
+	public static void showFreeCarsAdmin(List<Car> freeCar) {
+		int x = 1;
+		for (Car c : freeCar) {
+			System.out.println(x + ". "
+					+ c.getName()
+					+ "  "
+					+ c.getCategory()
+					+ "クラス　ナンバー:"
+					+ c.getCar_number());
+			x++;
+		}
 	}
 
 	public static LocalDateTime changeLocalDateTime(String date, String time) {
@@ -217,20 +240,28 @@ public class AdminMethod {
 
 	}
 
-	//予約確認選択
-	public static void selectCheck() {
-		System.out.println("どちらの車を検索しますか？");
-		System.out.println("1:予約車の検索");
-		System.out.println("2:空車の検索");
-		int x = scan.nextInt();
-		if (x == 1) {
-			checkreserve();
-		} else if (x == 2) {
-			checkFreeCar();
-		} else {
+	//予約(userがわの予約メソッドがカスすぎる)
+	public static void bookAdmin(List<Car> avalablears) {
+		Car selectCar = selectCar(avalablears);
+
+	}
+
+	//車両選択
+	public static Car selectCar(List<Car> avaCars) {
+		System.out.println("どの車を選択しますか。ナンバーを入力してください");
+		int number = scan.nextInt();
+		Car car = null;
+		for (Car c : avaCars) {
+			if (number == c.getCar_number()) {
+				car = avaCars.get(number);
+				break;
+			}
+		}
+		if (car == null) {
+			System.out.println("正しいナンバーを入力してください");
 
 		}
-
+		return car;
 	}
 
 }

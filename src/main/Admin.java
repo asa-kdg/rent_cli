@@ -1,23 +1,20 @@
 package main;
 
 public class Admin {
-	private String Id = "admin";
-	private static String pass = "0123";
+	private static String id;
+	private static int password;
 
-	public String getId() {
-		return Id;
+	public Admin(String id, int password) {
+		this.id = id;
+		this.password = password;
 	}
 
-	public void setId(String id) {
-		this.Id = id;
+	public static String getId() {
+		return id;
 	}
 
-	public static String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
+	public static int getPassword() {
+		return password;
 	}
 
 }

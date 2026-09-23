@@ -68,26 +68,12 @@ public class Shop {
 
 	//空き車両検索
 	public static List<Car> shopFreeCar(LocalDateTime straTime, LocalDateTime finTime, Shop shop) {
-		int x = 1;
 		Shop seleshop = shop;
 		List<Car> seleCars = seleshop.getCars();
 		List<Car> freeCars = new ArrayList<Car>();
 		for (Car c : seleCars) {
 			if (c.isAvailable(straTime, finTime)) {
 				freeCars.add(c);
-
-				System.out.println(x + ". "
-						+ c.getName()
-						+ "  "
-						+ c.getCategory()
-						+ "クラス　基本料金:"
-						+ c.getPrice()
-						+ "円　乗車人数"
-						+ c.getPassengers()
-						+ "人　車種例"
-						+ c.getName());
-
-				x++;
 			}
 		}
 		return freeCars;

@@ -26,6 +26,7 @@ public class UserMethod {
 			System.out.println("4:予約確認");
 			System.out.println("5:予約キャンセル");
 			System.out.println("6:予約時間変更");
+			System.out.println("7:終了する");
 			int selectFunc = scan.nextInt();
 
 			switch (selectFunc) {
@@ -135,6 +136,7 @@ public class UserMethod {
 		LocalDateTime finDateTime = choseDateTime("返却", choShop);
 		//空き車両の表示
 		List<Car> freecars = Shop.shopFreeCar(startDateTime, finDateTime, choShop);
+		showFreeCars(freecars);
 		//空き車両の有無
 		if (freecars.isEmpty()) {
 			System.out.println("空き車両がありません");
@@ -151,6 +153,25 @@ public class UserMethod {
 		System.out.println("予約情報を確認、変更およびキャンセルする場合は名前、予約者IDが必要になります");
 		System.out.println("必ず保管してください");
 
+	}
+
+	//空き車両表示
+	public static void showFreeCars(List<Car> freeCar) {
+		int x = 1;
+		for (Car c : freeCar) {
+			System.out.println(x + ". "
+					+ c.getName()
+					+ "  "
+					+ c.getCategory()
+					+ "クラス　基本料金:"
+					+ c.getPrice()
+					+ "円　乗車人数"
+					+ c.getPassengers()
+					+ "人　車種例"
+					+ c.getName());
+
+			x++;
+		}
 	}
 
 	//時間の指定
@@ -191,7 +212,7 @@ public class UserMethod {
 			int select = scan.nextInt() - 1;
 
 			if (select < 0 || select >= freecar.size()) {
-				System.out.println("正しい車両番号を指定してください");
+				System.out.println("正しい番号を指定してください");
 				continue;
 			}
 			return freecar.get(select);
