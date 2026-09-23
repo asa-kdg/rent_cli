@@ -1,5 +1,8 @@
 package main;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,8 +27,8 @@ public class AdminMethod {
 			System.out.println("2:店舗登録");
 			System.out.println("3:車両登録");
 			System.out.println("4:車両削除");
-			System.out.println("5:予約確認");
-			System.out.println("5:予約状態変更");
+			System.out.println("5:予約情報確認");
+			System.out.println("5:予約");
 			System.out.println("6:終了する");
 
 			int selectFunc = scan.nextInt();
@@ -44,15 +47,15 @@ public class AdminMethod {
 				break;
 			}
 			case 4: {
-				addCar();
+				deleteCar();
 				break;
 			}
 			case 5: {
-				checkreserve();
+
 				break;
 			}
 			case 6: {
-				addCar();
+
 				break;
 			}
 			default:
@@ -169,8 +172,8 @@ public class AdminMethod {
 			}
 			System.out.println("該当する車両はありません");
 			return;
-
 		}
+		System.out.println("削除が完了しました。");
 
 	}
 
@@ -182,6 +185,49 @@ public class AdminMethod {
 		for (Car ch : checkCar) {
 			List<Reservation> cheReservations = ch.getReservations();
 			ReservationManager.showReservations(cheReservations);
+		}
+	}
+
+	//フリー車の確認
+	public static void checkFreeCar() {
+		Shop checkshop = seleShop();
+		System.out.println("=====空車確認======");
+		System.out.println("検索する開始日を入力してください(2020-09-22)");
+		String stDate = scan.next();
+		System.out.println("検索する開始時間の時を入力してください(13:25)");
+		String stTime = scan.next();
+		LocalDateTime stLocalDateTime = changeLocalDateTime(stDate, stTime);
+
+		System.out.println("検索する終了日を入力してください(2020-09-22)");
+		String fiDate = scan.next();
+		System.out.println("検索する終了時間の時を入力してください(13:25)");
+		String fiTime = scan.next();
+		LocalDateTime fiLocalDateTime = changeLocalDateTime(fiDate, fiTime);
+		Shop.shopFreeCar(stLocalDateTime, fiLocalDateTime, checkshop);
+
+	}
+
+	public static LocalDateTime changeLocalDateTime(String date, String time) {
+		LocalDate changeDate = LocalDate.parse(date);
+		LocalTime changeTime = LocalTime.parse(time);
+
+		LocalDateTime DateTime = LocalDateTime.of(changeDate, changeTime);
+
+		return DateTime;
+
+	}
+
+	//予約確認選択
+	public static void selectCheck() {
+		System.out.println("どちらの車を検索しますか？");
+		System.out.println("1:予約車の検索");
+		System.out.println("2:空車の検索");
+		int x = scan.nextInt();
+		if (x == 1) {
+			checkreserve();
+		} else if (x == 2) {
+			checkFreeCar();
+		} else {
 
 		}
 

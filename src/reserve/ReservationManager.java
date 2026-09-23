@@ -24,7 +24,7 @@ public class ReservationManager {
 
 	//予約
 	public static Reservation createResevation(Car car,
-			String name, String shop,
+			String name, Shop shop,
 			LocalDateTime startTime, LocalDateTime finTime) {
 		int reserveId = useReserveId + 1;
 		//貸出時間切り上げ

@@ -2,16 +2,18 @@ package reserve;
 
 import java.time.LocalDateTime;
 
+import shop.Shop;
+
 public class Reservation {
 	private static int reserveId;
 	private static String user;
 	private int car_number;
-	private String shop;
+	private Shop shop;
 	private LocalDateTime startTime;
 	private LocalDateTime finishTime;
 	private int totalTime;
 
-	public Reservation(int reserveId, String user, int car_number, String shop, LocalDateTime startTime,
+	public Reservation(int reserveId, String user, int car_number, Shop shop, LocalDateTime startTime,
 			LocalDateTime finishTime,
 			int totalTime) {
 
@@ -48,11 +50,11 @@ public class Reservation {
 		this.car_number = car_number;
 	}
 
-	public String getShop() {
+	public Shop getShop() {
 		return shop;
 	}
 
-	public void setShop(String shop) {
+	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
 
