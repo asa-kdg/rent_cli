@@ -66,7 +66,7 @@ public class UserMethod {
 
 	//車の車種カテゴリーごとに一覧を表示
 	public static void showCarCategory() {
-		Shop shop = ShopManagers.getShop(chooseShop());
+		Shop shop = chooseShop();
 		System.out.println("====車種クラス一覧====");
 
 		List<String> categories = new ArrayList<>();
@@ -108,7 +108,7 @@ public class UserMethod {
 	}
 
 	//店舗選択
-	public static String chooseShop() {
+	public static Shop chooseShop() {
 		while (true) {
 			System.out.println("店舗を数字で選択してください");
 			ShopManagers.showShop();
@@ -117,7 +117,7 @@ public class UserMethod {
 
 			if (shopsele >= 0 && shopsele < shops.size()) {
 				Shop seleShop = shops.get(shopsele);
-				return seleShop.getName();
+				return seleShop;
 			}
 
 			System.out.println("正しい店舗の番号を選択してください");
@@ -129,12 +129,12 @@ public class UserMethod {
 	public static void book() {
 		System.out.println("レンタカーの予約をします");
 		//店舗指定
-		String shopName = chooseShop();
+		Shop choShop = chooseShop();
 		//時間指定
-		LocalDateTime startDateTime = choseDateTime("貸出", shopName);
-		LocalDateTime finDateTime = choseDateTime("返却", shopName);
+		LocalDateTime startDateTime = choseDateTime("貸出", choShop);
+		LocalDateTime finDateTime = choseDateTime("返却", choShop);
 		//空き車両の表示
-		List<Car> freecars = Shop.shopFreeCar(startDateTime, finDateTime);
+		List<Car> freecars = Shop.shopFreeCar(startDateTime, finDateTime, choShop);
 		//空き車両の有無
 		if (freecars.isEmpty()) {
 			System.out.println("空き車両がありません");
@@ -144,7 +144,7 @@ public class UserMethod {
 		Car selected = selectCar(freecars);
 		//予約
 		String name = inputName();
-		Reservation newReservation = ReservationManager.createResevation(selected, name, shopName, startDateTime,
+		Reservation newReservation = ReservationManager.createResevation(selected, name, choShop, startDateTime,
 				finDateTime);
 		System.out.println("予約が完了しました");
 		ReservationManager.showReservation(newReservation);
@@ -154,7 +154,7 @@ public class UserMethod {
 	}
 
 	//時間の指定
-	public static LocalDateTime choseDateTime(String when, String shopName) {
+	public static LocalDateTime choseDateTime(String when, Shop shop) {
 		while (true) {
 			System.out.println(when + "日時を入力してください");
 			System.out.println("「年」を入力してください(2026-)");
@@ -171,13 +171,12 @@ public class UserMethod {
 			LocalDateTime DateTime = LocalDateTime.of(year, month, date, hour, min);
 
 			LocalTime selectedTime = DateTime.toLocalTime();
-			Shop shop = ShopManagers.getShop(shopName);
 			LocalTime shopOpen = shop.getOpenTime();
 			LocalTime shopClose = shop.getCloseTime();
 
 			if (selectedTime.isBefore(shopOpen) || selectedTime.isAfter(shopClose)) {
 				System.out.println("営業時間外です。営業時間内の時間を指定してください。");
-				System.out.println(shopName + "店　営業時間　" + shopOpen + "-" + shopClose);
+				System.out.println(shop.getName() + "店　営業時間　" + shopOpen + "-" + shopClose);
 
 			} else {
 				return DateTime;
@@ -209,8 +208,8 @@ public class UserMethod {
 			return;
 		} else {
 			ReservationManager.showReservation(checkReserve);
-			String shop = checkReserve.getShop();
-			System.out.println("店舗 " + shop + "店");
+			Shop shop = checkReserve.getShop();
+			System.out.println("店舗 " + shop.getName() + "店");
 		}
 
 		System.out.println("予約の変更、キャンセルを行いますか？");
