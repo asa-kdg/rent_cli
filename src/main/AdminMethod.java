@@ -62,9 +62,12 @@ public class AdminMethod {
 				bookAdmin(checkFreeCar());
 				break;
 			}
+			case 7: {
+				System.out.println("終了します");
+				break;
+			}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + selectFunc);
-
+				System.out.println("正しい番号を入力してください");
 			}
 
 		}
@@ -88,22 +91,24 @@ public class AdminMethod {
 
 	//店の選択
 	public static Shop seleShop() {
-		System.out.println("どの店舗にしますか？");
-		ShopManagers.showShop();
-		int selectshop = scan.nextInt();
-		if (selectshop < 0 && selectshop > 5) {
-			System.out.println("正しい番号を入力してください");
-		}
 		List<Shop> shops = ShopManagers.getShops();
-		Shop shop = shops.get(selectshop - 1);
-		return shop;
+		while (true) {
+			System.out.println("どの店舗にしますか？");
+			ShopManagers.showShop();
+			int selectshop = scan.nextInt();
+			if (selectshop < 1 && selectshop > shops.size()) {
+				System.out.println("正しい番号を入力してください");
+				continue;
+			}
+			return shops.get(selectshop - 1);
+		}
 
 	}
 
 	//車の追加
 	public static void addCar() {
 		Shop addedShop = seleShop();
-		List<Car> car = Shop.getCars();
+		List<Car> car = addedShop.getCars();
 		System.out.println("車種クラスを選択してください");
 		Car.showcategory(car);
 		String category = scan.next();
@@ -154,12 +159,11 @@ public class AdminMethod {
 	//カテゴリー検索
 	public static Car findCategory(List<Car> cars, String category) {
 		for (Car car : cars) {
-			if (car.getCategory() == category) {
+			if (car.getCategory().equals(category)) {
 				return car;
 			}
 		}
 		return null;
-
 	}
 
 	//車両削除
@@ -175,13 +179,11 @@ public class AdminMethod {
 		for (Car de : deleCar) {
 			if (de.getCar_number() == number) {
 				deletedShop.removeCar(de);
+				System.out.println("削除が完了しました。");
 				return;
 			}
-			System.out.println("該当する車両はありません");
-			return;
 		}
-		System.out.println("削除が完了しました。");
-
+		System.out.println("該当する車両はありません");
 	}
 
 	//予約確認
@@ -248,20 +250,17 @@ public class AdminMethod {
 
 	//車両選択
 	public static Car selectCar(List<Car> avaCars) {
-		System.out.println("どの車を選択しますか。ナンバーを入力してください");
-		int number = scan.nextInt();
-		Car car = null;
-		for (Car c : avaCars) {
-			if (number == c.getCar_number()) {
-				car = avaCars.get(number);
-				break;
-			}
-		}
-		if (car == null) {
-			System.out.println("正しいナンバーを入力してください");
+		while (true) {
+			System.out.println("どの車を選択しますか。ナンバーを入力してください");
+			int number = scan.nextInt();
 
+			for (Car c : avaCars) {
+				if (number == c.getCar_number()) {
+					return c;
+				}
+			}
+			System.out.println("正しいナンバーを入力してください");
 		}
-		return car;
 	}
 
 }

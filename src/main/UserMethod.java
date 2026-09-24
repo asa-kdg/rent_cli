@@ -59,8 +59,12 @@ public class UserMethod {
 				changeReservation(changeName, changeId);
 				break;
 			}
+			case 7: {
+				System.out.println("終了します");
+				break;
+			}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + selectFunc);
+				System.out.println("正しい番号を入力してください");
 			}
 		}
 	}
@@ -223,7 +227,7 @@ public class UserMethod {
 		System.out.println("予約の確認をします");
 		int reId = inputId();
 		String reName = inputName();
-		Reservation checkReserve = ReservationManager.findResevation(reName, reId);
+		Reservation checkReserve = ReservationManager.findResevation(ShopManagers.getShops(), reName, reId);
 		if (checkReserve == null) {
 			System.out.println("予約が見つかりませんでした");
 			return;
@@ -248,18 +252,18 @@ public class UserMethod {
 
 	//予約キャンセル
 	public static void cancelReservation(String name, int Id) {
-		Reservation cancelReservation = ReservationManager.findResevation(name, Id);
+		Reservation cancelReservation = ReservationManager.findResevation(ShopManagers.getShops(), name, Id);
 		if (cancelReservation == null) {
 			System.out.println("予約が見つかりませんでした。");
 		} else {
-			Car.removeReservation(cancelReservation);
+			ReservationManager.canselReservation(cancelReservation, ShopManagers.getShops());
 			System.out.println("キャンセルが完了しました。");
 		}
 	}
 
 	//予約変更
 	public static void changeReservation(String changeName, int changeId) {
-		Reservation changeReserve = ReservationManager.findResevation(changeName, changeId);
+		Reservation changeReserve = ReservationManager.findResevation(ShopManagers.getShops(), changeName, changeId);
 		if (changeReserve == null) {
 			System.out.println("予約が見つかりません");
 		} else {
