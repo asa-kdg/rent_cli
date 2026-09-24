@@ -13,8 +13,6 @@ public class ReservationManager {
 
 	//予約番号の自動取得
 	private static int useReserveId = 1000;
-	//店舗情報
-	private static List<Shop> shops;
 
 	//トータル時間計算
 	public static int calcTotalTime(LocalDateTime sTime, LocalDateTime fTime) {
@@ -72,15 +70,14 @@ public class ReservationManager {
 		return null;
 	}
 
-	//予約検索(店舗指定なし)主にadmin側で使用
-	public static Reservation findResevation(
-			String name, int reserveId) {
+	//予約検索(店舗指定なし)主にUser側で使用
+	public static Reservation findResevation(List<Shop> shops, String name, int reserveId) {
 
 		for (Shop shop : shops) {
 			for (Car c : shop.getCars()) {
 				for (Reservation re : c.getReservations()) {
 					if (Reservation.getReserveId() == reserveId &&
-							Reservation.getUser() == name) {
+							Reservation.getUser().equals(name)) {
 						return re;
 					}
 				}
@@ -96,6 +93,20 @@ public class ReservationManager {
 		reservation.setStartTime(newStartTime);
 		reservation.setFinishTime(newFinTime);
 		reservation.setTotalTime(totalTime);
+	}
+
+	//予約キャンセル
+	public static void canselReservation(Reservation canRe, List<Shop> shops) {
+		for (Shop s : shops) {
+
+			for (Car c : s.getCars()) {
+				if (c.getCar_number() == canRe.getCar_number()) {
+					Car.removeReservation(canRe);
+					return;
+				}
+			}
+		}
+
 	}
 
 }
