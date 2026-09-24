@@ -23,7 +23,7 @@ public class AdminMethod {
 
 	}
 
-	public static int selectAdminFunction() {
+	public static void selectAdminFunction() {
 		System.out.println("どの操作をしますか");
 		scan.nextLine();
 		while (true) {
@@ -59,12 +59,12 @@ public class AdminMethod {
 				break;
 			}
 			case 6: {
-				bookAdmin(checkFreeCar());
+				bookCar();
 				break;
 			}
 			case 7: {
 				System.out.println("終了します");
-				break;
+				return;
 			}
 			default:
 				System.out.println("正しい番号を入力してください");
@@ -198,7 +198,7 @@ public class AdminMethod {
 	}
 
 	//フリー車の確認
-	public static List<Car> checkFreeCar() {
+	public static void bookCar() {
 		Shop checkshop = seleShop();
 		System.out.println("=====予約検索======");
 		System.out.println("検索する開始日を入力してください(2020-09-22)");
@@ -214,8 +214,10 @@ public class AdminMethod {
 		LocalDateTime fiLocalDateTime = changeLocalDateTime(fiDate, fiTime);
 		List<Car> freeCars = Shop.shopFreeCar(stLocalDateTime, fiLocalDateTime, checkshop);
 		showFreeCarsAdmin(freeCars);
-		return freeCars;
-
+		if (freeCars.isEmpty()) {
+			System.out.println("空き車両がありません");
+		}
+		book(freeCars, checkshop, stLocalDateTime, fiLocalDateTime);
 	}
 
 	//空き車両表示
@@ -242,10 +244,17 @@ public class AdminMethod {
 
 	}
 
-	//予約(userがわの予約メソッドがカスすぎる)
-	public static void bookAdmin(List<Car> avalablears) {
-		Car selectCar = selectCar(avalablears);
+	//予約
+	public static void book(List<Car> avalablears, Shop shop, LocalDateTime stTime, LocalDateTime finTime) {
+		Car seleCar = selectCar(avalablears);
 
+		System.out.println("予約者名義を入力");
+		String name = scan.next();
+
+		Reservation reservation = ReservationManager.createResevation(
+				seleCar, name, shop, stTime, finTime);
+
+		System.out.println("予約完了");
 	}
 
 	//車両選択
