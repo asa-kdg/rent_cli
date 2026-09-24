@@ -16,7 +16,7 @@ import shop.ShopManagers;
 public class UserMethod {
 	static Scanner scan = new Scanner(System.in);
 
-	public static int selectUserFunction() {
+	public static void selectUserFunction() {
 		System.out.println("どの操作をしますか");
 		scan.nextLine();
 		while (true) {
@@ -61,7 +61,7 @@ public class UserMethod {
 			}
 			case 7: {
 				System.out.println("終了します");
-				break;
+				return;
 			}
 			default:
 				System.out.println("正しい番号を入力してください");
