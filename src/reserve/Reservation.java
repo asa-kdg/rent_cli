@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import shop.Shop;
 
 public class Reservation {
-	private static int reserveId;
-	private static String user;
+	private int reserveId;
+	private String user;
 	private int car_number;
 	private Shop shop;
 	private LocalDateTime startTime;
@@ -26,7 +26,7 @@ public class Reservation {
 		this.totalTime = totalTime;
 	}
 
-	public static int getReserveId() {
+	public int getReserveId() {
 		return reserveId;
 	}
 
@@ -34,7 +34,7 @@ public class Reservation {
 		this.reserveId = reserveId;
 	}
 
-	public static String getUser() {
+	public String getUser() {
 		return user;
 	}
 

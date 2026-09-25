@@ -12,7 +12,7 @@ public class Car {
 	private int price;
 	private int passengers;
 	private String category;
-	private static List<Reservation> reservations;
+	private List<Reservation> reservations;
 
 	public Car(String name, int car_number, int price, int passengers, String category) {
 		this.name = name;
@@ -64,7 +64,7 @@ public class Car {
 		this.category = category;
 	}
 
-	public static List<Reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
@@ -76,7 +76,7 @@ public class Car {
 		reservations.add(reservation);
 	}
 
-	public static void removeReservation(Reservation reservation) {
+	public void removeReservation(Reservation reservation) {
 		reservations.remove(reservation);
 	}
 
@@ -90,7 +90,7 @@ public class Car {
 	}
 
 	//この時間に車両が使用可能か
-	public static boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
+	public boolean isAvailable(LocalDateTime startDate, LocalDateTime finDate) {
 		for (Reservation r : reservations) {
 			LocalDateTime startReserved = r.getStartTime();
 			LocalDateTime finReserved = r.getFinishTime();

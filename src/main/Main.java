@@ -8,6 +8,7 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		System.out.println("Main起動確認");
 
 		new ShopManagers();
 
@@ -16,6 +17,17 @@ public class Main {
 		} else {
 			System.out.println("CSVから店舗を読み込みます");
 			CsvManager.loadShops();
+		}
+
+		if (CsvManager.isCarsEmpty()) {
+
+			System.out.println("初回起動：初期車両を作成します");
+			ShopManagers.createCars();
+
+		} else {
+
+			System.out.println("CSVから車両を読み込みます");
+			CsvManager.loadCars();
 		}
 
 		boolean running = true;
@@ -43,6 +55,8 @@ public class Main {
 
 			case 3:
 				CsvManager.saveShops();
+				CsvManager.saveCars();
+
 				running = false;
 				break;
 
