@@ -150,7 +150,7 @@ public class UserMethod {
 		Car selected = selectCar(freecars);
 		//予約
 		String name = inputName();
-		System.out.println("★ createResevationを呼び出します ★");
+
 		Reservation newReservation = ReservationManager.createResevation(selected, name, choShop, startDateTime,
 				finDateTime);
 		System.out.println("予約が完了しました");

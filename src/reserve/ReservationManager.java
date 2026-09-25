@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import carmodel.Car;
 import shop.Shop;
-import shop.ShopManagers;
 
 public class ReservationManager {
 	static Scanner scan = new Scanner(System.in);
@@ -35,8 +34,6 @@ public class ReservationManager {
 		//貸出時間切り上げ
 		int totalTime = calcTotalTime(startTime, finTime);
 
-		System.out.println("★ createResevationが呼ばれた ★");
-
 		Reservation reservation = new Reservation(
 				reserveId,
 				name,
@@ -47,19 +44,6 @@ public class ReservationManager {
 				totalTime);
 
 		car.addReservation(reservation);
-
-		System.out.println("店舗数：" + ShopManagers.getShops().size());
-
-		for (Shop sh : ShopManagers.getShops()) {
-			System.out.println("店舗：" + sh.getName());
-			System.out.println("車両数：" + sh.getCars().size());
-
-			for (Car c : sh.getCars()) {
-				System.out.println(
-						c.getCar_number() +
-								" 予約数：" + c.getReservations().size());
-			}
-		}
 
 		return reservation;
 
