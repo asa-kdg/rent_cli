@@ -30,6 +30,16 @@ public class Main {
 			CsvManager.loadCars();
 		}
 
+		if (CsvManager.isReservationsEmpty()) {
+
+			System.out.println("予約CSVは空です");
+
+		} else {
+
+			System.out.println("CSVから予約を読み込みます");
+			CsvManager.loadReservations();
+		}
+
 		boolean running = true;
 
 		while (running) {
@@ -56,6 +66,7 @@ public class Main {
 			case 3:
 				CsvManager.saveShops();
 				CsvManager.saveCars();
+				CsvManager.saveReservations();
 
 				running = false;
 				break;
