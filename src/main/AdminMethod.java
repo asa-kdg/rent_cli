@@ -75,12 +75,12 @@ public class AdminMethod {
 	}
 
 	//ログイン
-	public static boolean login() {
+	public static boolean login(Admin admin) {
 		System.out.println("ID入力してください");
 		String id = scan.next();
 		System.out.println("パスワードを入力してください");
 		int pw = scan.nextInt();
-		if (id.equals(Admin.getId()) && pw == Admin.getPassword()) {
+		if (id.equals(admin.getId()) && pw == admin.getPassword()) {
 			System.out.println("パスワードが認証されました。");
 			return true;
 		} else {
@@ -96,7 +96,7 @@ public class AdminMethod {
 			System.out.println("どの店舗にしますか？");
 			ShopManagers.showShop();
 			int selectshop = scan.nextInt();
-			if (selectshop < 1 && selectshop > shops.size()) {
+			if (selectshop < 1 || selectshop > shops.size()) {
 				System.out.println("正しい番号を入力してください");
 				continue;
 			}
