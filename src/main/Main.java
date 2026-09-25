@@ -8,7 +8,7 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("Main起動確認");
+		Admin admin = new Admin("admin", 1234);
 
 		new ShopManagers();
 
@@ -60,7 +60,8 @@ public class Main {
 				break;
 
 			case 2:
-				AdminMethod.login();
+				AdminMethod.login(admin);
+				AdminMethod.selectAdminFunction();
 				break;
 
 			case 3:
