@@ -2,10 +2,21 @@ package main;
 
 import java.util.Scanner;
 
+import shop.ShopManagers;
+
 public class Main {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
+
+		new ShopManagers();
+
+		if (CsvManager.isShopEmpty()) {
+			System.out.println("初回起動：初期店舗を作成します");
+		} else {
+			System.out.println("CSVから店舗を読み込みます");
+			CsvManager.loadShops();
+		}
 
 		boolean running = true;
 
@@ -30,7 +41,8 @@ public class Main {
 				AdminMethod.login();
 				break;
 
-			case 0:
+			case 3:
+				CsvManager.saveShops();
 				running = false;
 				break;
 
