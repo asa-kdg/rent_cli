@@ -16,6 +16,11 @@ public class ReservationManager {
 	//予約番号の自動取得
 	private static int useReserveId = 1000;
 
+	// 予約番号を設定
+	public static void setUseReserveId(int reserveId) {
+		useReserveId = reserveId;
+	}
+
 	//トータル時間計算
 	public static int calcTotalTime(LocalDateTime sTime, LocalDateTime fTime) {
 		int totalTime = (int) Duration.between(sTime, fTime).toMinutes() / 60;
@@ -26,7 +31,8 @@ public class ReservationManager {
 	public static Reservation createResevation(Car car,
 			String name, Shop shop,
 			LocalDateTime startTime, LocalDateTime finTime) {
-		int reserveId = useReserveId + 1;
+		int reserveId = ++useReserveId;
+
 		//貸出時間切り上げ
 		int totalTime = calcTotalTime(startTime, finTime);
 
@@ -57,8 +63,6 @@ public class ReservationManager {
 		}
 
 		CsvManager.saveReservations();
-
-		useReserveId++;
 
 		return reservation;
 
@@ -112,6 +116,8 @@ public class ReservationManager {
 		reservation.setStartTime(newStartTime);
 		reservation.setFinishTime(newFinTime);
 		reservation.setTotalTime(totalTime);
+
+		CsvManager.saveReservations();
 	}
 
 	//予約キャンセル
@@ -121,6 +127,7 @@ public class ReservationManager {
 			for (Car c : s.getCars()) {
 				if (c.getCar_number() == canRe.getCar_number()) {
 					c.removeReservation(canRe);
+					CsvManager.saveReservations();
 					return;
 				}
 			}
