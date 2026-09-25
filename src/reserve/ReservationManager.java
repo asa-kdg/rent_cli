@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import carmodel.Car;
-import main.CsvManager;
 import shop.Shop;
 import shop.ShopManagers;
 
@@ -62,8 +61,6 @@ public class ReservationManager {
 			}
 		}
 
-		CsvManager.saveReservations();
-
 		return reservation;
 
 	}
@@ -117,7 +114,6 @@ public class ReservationManager {
 		reservation.setFinishTime(newFinTime);
 		reservation.setTotalTime(totalTime);
 
-		CsvManager.saveReservations();
 	}
 
 	//予約キャンセル
@@ -127,7 +123,7 @@ public class ReservationManager {
 			for (Car c : s.getCars()) {
 				if (c.getCar_number() == canRe.getCar_number()) {
 					c.removeReservation(canRe);
-					CsvManager.saveReservations();
+
 					return;
 				}
 			}
