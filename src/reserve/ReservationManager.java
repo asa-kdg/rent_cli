@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import carmodel.Car;
+import main.CsvManager;
 import shop.Shop;
+import shop.ShopManagers;
 
 public class ReservationManager {
 	static Scanner scan = new Scanner(System.in);
@@ -28,6 +30,8 @@ public class ReservationManager {
 		//貸出時間切り上げ
 		int totalTime = calcTotalTime(startTime, finTime);
 
+		System.out.println("★ createResevationが呼ばれた ★");
+
 		Reservation reservation = new Reservation(
 				reserveId,
 				name,
@@ -38,6 +42,21 @@ public class ReservationManager {
 				totalTime);
 
 		car.addReservation(reservation);
+
+		System.out.println("店舗数：" + ShopManagers.getShops().size());
+
+		for (Shop sh : ShopManagers.getShops()) {
+			System.out.println("店舗：" + sh.getName());
+			System.out.println("車両数：" + sh.getCars().size());
+
+			for (Car c : sh.getCars()) {
+				System.out.println(
+						c.getCar_number() +
+								" 予約数：" + c.getReservations().size());
+			}
+		}
+
+		CsvManager.saveReservations();
 
 		useReserveId++;
 
@@ -61,8 +80,8 @@ public class ReservationManager {
 	//予約検索(店舗指定あり)主にadmin側で使用
 	public static Reservation findResevation(Shop shop, int reserveId) {
 		for (Car c : shop.getCars()) {
-			for (Reservation re : Car.getReservations()) {
-				if (Reservation.getReserveId() == reserveId) {
+			for (Reservation re : c.getReservations()) {
+				if (re.getReserveId() == reserveId) {
 					return re;
 				}
 			}
@@ -76,8 +95,8 @@ public class ReservationManager {
 		for (Shop shop : shops) {
 			for (Car c : shop.getCars()) {
 				for (Reservation re : c.getReservations()) {
-					if (Reservation.getReserveId() == reserveId &&
-							Reservation.getUser().equals(name)) {
+					if (re.getReserveId() == reserveId &&
+							re.getUser().equals(name)) {
 						return re;
 					}
 				}
@@ -101,7 +120,7 @@ public class ReservationManager {
 
 			for (Car c : s.getCars()) {
 				if (c.getCar_number() == canRe.getCar_number()) {
-					Car.removeReservation(canRe);
+					c.removeReservation(canRe);
 					return;
 				}
 			}

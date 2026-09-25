@@ -11,7 +11,7 @@ public class Shop {
 	private String name;
 	private LocalTime openTime;
 	private LocalTime closeTime;
-	private static List<Car> cars;
+	private List<Car> cars;
 
 	public Shop(String name, LocalTime openTime, LocalTime closeTime) {
 		this.name = name;
@@ -46,7 +46,7 @@ public class Shop {
 		this.closeTime = closeTime;
 	}
 
-	public static List<Car> getCars() {
+	public List<Car> getCars() {
 		return cars;
 	}
 

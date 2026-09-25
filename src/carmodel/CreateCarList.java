@@ -16,7 +16,7 @@ public class CreateCarList {
 		shop.addCar(new Cx("ヤリスクロス", 3125));
 		shop.addCar(new Cx("クロストレック", 3126, 1300));
 		shop.addCar(new Cx("イクリプスクロス", 3129, 1300));
-		shop.addCar(new Cx("イクリプスクロス", 3129, 1300));
+		shop.addCar(new Cx("イクリプスクロス", 3133, 1300));
 		shop.addCar(new Pb("シエンタ", 2111, 1600));
 		shop.addCar(new Pb("フリード", 2112, 1600));
 		shop.addCar(new Pb("シエンタ", 2113, 1600));
@@ -54,11 +54,11 @@ public class CreateCarList {
 		shop.addCar(new Bc("ヤリス", 1121));
 		shop.addCar(new Bc("フィット", 1122));
 		shop.addCar(new Bc("ノート", 1123));
-		shop.addCar(new Cx("ヤリスクロス", 3124));
-		shop.addCar(new Cx("クロストレック", 3125, 1300));
-		shop.addCar(new Cx("ライズ", 3126));
-		shop.addCar(new Cx("イクリプスクロス", 3127, 1300));
-		shop.addCar(new Pb("シエンタ", 2120, 1600));
+		shop.addCar(new Cx("ヤリスクロス", 3141));
+		shop.addCar(new Cx("クロストレック", 3142, 1300));
+		shop.addCar(new Cx("ライズ", 3145));
+		shop.addCar(new Cx("イクリプスクロス", 3146, 1300));
+		shop.addCar(new Pb("シエンタ", 2140, 1600));
 		shop.addCar(new Pb("セレナ", 2121));
 		shop.addCar(new Pb("セレナ", 2122));
 		shop.addCar(new Pb("デリカ", 2123));
@@ -69,8 +69,8 @@ public class CreateCarList {
 		shop.addCar(new Bc("ヤリス", 1124));
 		shop.addCar(new Bc("フィット", 1125));
 		shop.addCar(new Bc("ノート", 1126));
-		shop.addCar(new Cx("ヤリスクロス", 3128));
-		shop.addCar(new Cx("クロストレック", 3129, 1300));
+		shop.addCar(new Cx("ヤリスクロス", 3143));
+		shop.addCar(new Cx("クロストレック", 3144, 1300));
 		shop.addCar(new Cx("ライズ", 3130));
 		shop.addCar(new Cx("イクリプスクロス", 3131, 1300));
 		shop.addCar(new Pb("シエンタ", 2124, 1600));

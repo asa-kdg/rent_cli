@@ -150,6 +150,7 @@ public class UserMethod {
 		Car selected = selectCar(freecars);
 		//予約
 		String name = inputName();
+		System.out.println("★ createResevationを呼び出します ★");
 		Reservation newReservation = ReservationManager.createResevation(selected, name, choShop, startDateTime,
 				finDateTime);
 		System.out.println("予約が完了しました");
@@ -269,7 +270,17 @@ public class UserMethod {
 		} else {
 			LocalDateTime newStartTime = choseDateTime("新しい開始", changeReserve.getShop());
 			LocalDateTime newFinTime = choseDateTime("新しい返却", changeReserve.getShop());
-			Boolean check = Car.isAvailable(newStartTime, newFinTime);
+			Car reservedCar = null;
+
+			for (Car car : changeReserve.getShop().getCars()) {
+				if (car.getCar_number() == changeReserve.getCar_number()) {
+					reservedCar = car;
+					break;
+				}
+			}
+
+			Boolean check = reservedCar.isAvailable(newStartTime, newFinTime);
+
 			if (check) {
 				ReservationManager.updateReservation(changeReserve, newStartTime, newFinTime);
 				System.out.println("変更が完了しました");
